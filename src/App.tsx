@@ -2,16 +2,19 @@ import "./css/App.css";
 import { useState, useEffect } from "react";
 import { InventoryItem } from "./utils/InventoryItem";
 import { fetchData } from "./utils/fetchData";
+import { FlavourList } from "./components/FlavourList";
+import { PageHeader } from "./components/PageHeader";
 
 function App(): JSX.Element {
-  const [inventoryData, setInventoryData] = useState<InventoryItem[]>([]);
+  const [inventory, setInventory] = useState<InventoryItem[]>([]);
   useEffect(() => {
-    fetchData(setInventoryData);
+    fetchData(setInventory);
   }, []);
-  console.log(inventoryData);
+  console.log(inventory);
   return (
     <>
-      <h1>A simple hello world!</h1>
+      <PageHeader />
+      <FlavourList inventory={inventory} />
     </>
   );
 }
